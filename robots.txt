@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adarraflor.com.br/sitemap.xml
+Sitemap: https://adarra.com.br/sitemap.xml
