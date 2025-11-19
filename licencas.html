@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Licença e Termos de Uso | Addara Flor - Portfólio Artístico</title>
+  <meta name="description" content="Termos de uso, diretrizes legais e informações sobre direitos autorais do conteúdo artístico de Addara Flor">
+  
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Nova Paleta de Cores - Tema Neon */
+      --bg-primary: #000000;
+      --bg-secondary: #1a001a;
+      --bg-card: #0d0013;
+      --text-primary: #ffffff;
+      --text-neon-pink: #ff00ff;
+      --text-neon-purple: #b000ff;
+      --text-warm: #f8f0e0;
+      --accent-neon-pink: #ff00ff;
+      --accent-neon-purple: #b000ff;
+      --border-neon: #b000ff;
+
+      /* Cores do Tema Neon */
+      --neon-purple: #b000ff;
+      --neon-pink: #ff00cc;
+      --neon-blue: #00ffff;
+
+      /* Espaçamento */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 12px;
+      --space-lg: 16px;
+      --space-xl: 24px;
+      --space-2xl: 32px;
+
+      /* Bordas */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+
+      /* Transições */
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.45s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(36px, 8vw, 48px);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      color: var(--text-neon-pink);
+      text-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+    }
+
+    .subtitle {
+      color: var(--text-primary);
+      font-size: clamp(16px, 4vw, 20px);
+      font-weight: 300;
+      opacity: 0.9;
+      text-shadow: 0 0 10px rgba(176, 0, 255, 0.5);
+    }
+
+    .content-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-neon);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-xl);
+      box-shadow: 0 0 10px rgba(176, 0, 255, 0.2);
+      transition: var(--transition-normal);
+    }
+
+    .content-section:hover {
+      box-shadow: 0 0 20px rgba(176, 0, 255, 0.4);
+    }
+
+    .section-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      color: var(--text-neon-pink);
+      margin-bottom: var(--space-lg);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+      border-bottom: 1px solid rgba(176, 0, 255, 0.3);
+      padding-bottom: var(--space-sm);
+    }
+
+    .info-item {
+      margin-bottom: var(--space-lg);
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: var(--text-neon-purple);
+      margin-bottom: var(--space-xs);
+    }
+
+    .info-value {
+      color: var(--text-warm);
+    }
+
+    .instagram-link {
+      color: var(--text-neon-purple);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition-normal);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .instagram-link:hover {
+      color: var(--text-neon-pink);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+    }
+
+    .instagram-link::after {
+      content: "↗";
+      font-size: 14px;
+    }
+
+    .prohibitions-list, .rules-list {
+      list-style: none;
+      padding-left: var(--space-md);
+    }
+
+    .prohibitions-list li, .rules-list li {
+      position: relative;
+      padding: var(--space-sm) 0 var(--space-sm) var(--space-xl);
+      margin-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(176, 0, 255, 0.1);
+    }
+
+    .prohibitions-list li:before, .rules-list li:before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      color: var(--text-neon-pink);
+      font-weight: bold;
+    }
+
+    .rules-list li:before {
+      content: "✓";
+      color: var(--neon-blue);
+    }
+
+    .warning-box {
+      background: rgba(176, 0, 255, 0.1);
+      border-left: 4px solid var(--neon-purple);
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      border-radius: var(--radius-sm);
+    }
+
+    .warning-title {
+      font-weight: 700;
+      color: var(--text-neon-pink);
+      margin-bottom: var(--space-sm);
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border-neon);
+      text-decoration: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: var(--transition-normal);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      margin-top: var(--space-xl);
+      box-shadow: 0 0 10px rgba(176, 0, 255, 0.2);
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(176, 0, 255, 0.3);
+      background: rgba(176, 0, 255, 0.1);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(176, 0, 255, 0.3);
+      color: var(--text-warm);
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: var(--text-neon-purple);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-section {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .content-section:nth-child(2) { animation-delay: 0.1s; }
+    .content-section:nth-child(3) { animation-delay: 0.2s; }
+    .content-section:nth-child(4) { animation-delay: 0.3s; }
+    .content-section:nth-child(5) { animation-delay: 0.4s; }
+  </style>
+  <script>
+  // Configuração específica da página de licenças
+  gtag('config', 'G-MQ0BCP8Y35', {
+    'page_title': 'Licenças - AddaraFlor', 
+    'page_location': window.location.href,
+    'page_type': 'tela_licencas'
+  });
+</script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">Licença e Termos de Uso</h1>
+      <p class="subtitle">Informações legais e diretrizes para utilização do conteúdo artístico</p>
+    </header>
+
+    <section class="content-section">
+      <h2 class="section-title">Informações do Portfólio</h2>
+      
+      <div class="info-item">
+        <div class="info-label">Artista</div>
+        <div class="info-value">Addara Flor</div>
+      </div>
+      
+      <div class="info-item">
+        <div class="info-label">Instagram</div>
+        <div class="info-value">
+          <a href="https://instagram.com/addaraflor" target="_blank" rel="noopener noreferrer" class="instagram-link">@addaraflor</a>
+        </div>
+      </div>
+      
+      <div class="info-item">
+        <div class="info-label">Descrição Artística:</div>
+        <div class="info-value">Artista performática especializada em pole dance artístico e expressão corporal contemporânea. Explora o movimento como linguagem, investigando as fronteiras entre dança, arte visual e expressão corporal.</div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Direitos Autorais e Propriedade Intelectual</h2>
+      
+      <div class="warning-box">
+        <div class="warning-title">PROTEÇÃO DE DIREITOS AUTORAIS</div>
+        <p>Todas as imagens, vídeos, textos, performances e qualquer outro conteúdo artístico presente neste portfólio são de propriedade exclusiva de Addara Flor e estão protegidos pelas leis de direitos autorais e propriedade intelectual.</p>
+      </div>
+      
+      <h3 style="color: var(--text-neon-purple); margin: var(--space-lg) 0 var(--space-md) 0;">É EXPRESSAMENTE PROIBIDO:</h3>
+      
+      <ul class="prohibitions-list">
+        <li>Reproduzir, distribuir ou compartilhar qualquer imagem ou vídeo do portfólio sem autorização explícita por escrito da artista</li>
+        <li>Utilizar o conteúdo para fins comerciais, incluindo mas não se limitando a venda, licenciamento ou qualquer forma de monetização</li>
+        <li>Modificar, editar ou criar obras derivadas baseadas no conteúdo artístico do portfólio</li>
+        <li>Utilizar as imagens em outros sites, redes sociais, aplicativos ou qualquer outra plataforma digital sem autorização</li>
+        <li>Armazenar o conteúdo em servidores ou sistemas de terceiros</li>
+        <li>Utilizar técnicas de scraping, download automatizado ou qualquer método para copiar o conteúdo em massa</li>
+        <li>Utilizar o conteúdo de forma que possa causar danos à reputação ou imagem da artista</li>
+        <li>Revender, redistribuir ou transferir o conteúdo a terceiros</li>
+        <li>Utilizar o conteúdo para treinamento de modelos de IA, machine learning ou qualquer sistema automatizado</li>
+        <li>Utilizar o conteúdo em contextos que distorçam sua natureza artística original</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Termos de Uso e Condições Gerais</h2>
+      
+      <h3 style="color: var(--text-neon-purple); margin: var(--space-lg) 0 var(--space-md) 0;">Condições para Acesso e Utilização:</h3>
+      
+      <ul class="rules-list">
+        <li>Este portfólio é destinado à apreciação artística e profissional</li>
+        <li>O acesso ao conteúdo é pessoal e intransferível</li>
+        <li>Todo o conteúdo é protegido por direitos autorais e propriedade intelectual</li>
+        <li>O uso do portfólio implica na aceitação integral destes termos e condições</li>
+        <li>O conteúdo deve ser apreciado em seu contexto artístico original</li>
+      </ul>
+      
+      <div class="warning-box">
+        <div class="warning-title">RESPONSABILIDADES DO USUÁRIO</div>
+        <p>O usuário é integralmente responsável por qualquer uso inadequado do conteúdo e poderá ser responsabilizado civil e criminalmente por violações dos direitos autorais e propriedade intelectual.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Uso Permitido e Licenças</h2>
+      
+      <h3 style="color: var(--text-neon-purple); margin: var(--space-lg) 0 var(--space-md) 0;">Uso Permitido:</h3>
+      
+      <ul class="rules-list">
+        <li>Visualização pessoal para apreciação artística</li>
+        <li>Compartilhamento através de links diretos para o portfólio</li>
+        <li>Uso educacional com atribuição adequada (mediante autorização)</li>
+        <li>Citações para críticas e análises artísticas (com atribuição)</li>
+        <li>Referências em contextos acadêmicos e artísticos (mediante autorização)</li>
+      </ul>
+      
+      <div class="warning-box">
+        <div class="warning-title">LICENCIAMENTO PROFISSIONAL</div>
+        <p>Para uso profissional, comercial ou educacional do conteúdo artístico, é necessário adquirir uma licença específica através dos canais oficiais. Entre em contato para discutir opções de licenciamento.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Conformidade Legal</h2>
+      
+      <p>Este portfólio opera em conformidade com:</p>
+      
+      <ul class="rules-list">
+        <li>Lei de Direitos Autorais (Lei nº 9.610/98)</li>
+        <li>Marco Civil da Internet (Lei nº 12.965/14)</li>
+        <li>Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/18)</li>
+        <li>Normativas de propriedade intelectual aplicáveis</li>
+        <li>Regulamentações sobre comércio eletrônico e proteção ao consumidor</li>
+      </ul>
+      
+      <h3 style="color: var(--text-neon-purple); margin: var(--space-lg) 0 var(--space-md) 0;">Medidas de Proteção:</h3>
+      
+      <p>Implementamos medidas técnicas e jurídicas para proteger nosso conteúdo artístico, incluindo:</p>
+      
+      <ul class="rules-list">
+        <li>Marcas d'água digitais em todo o conteúdo visual</li>
+        <li>Monitoramento de uso não autorizado na internet</li>
+        <li>Ações legais contra violações de direitos autorais</li>
+        <li>Sistemas de detecção de download não autorizado</li>
+        <li>Registro de metadados para rastreamento de conteúdo</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Contato para Autorizações</h2>
+      
+      <p>Para solicitar autorização de uso de qualquer conteúdo deste portfólio artístico, entre em contato exclusivamente através dos canais oficiais:</p>
+      
+      <div class="info-item">
+        <div class="info-label">Instagram Oficial</div>
+        <div class="info-value">
+          <a href="https://instagram.com/addaraflor" target="_blank" rel="noopener noreferrer" class="instagram-link">@addaraflor</a>
+        </div>
+      </div>
+      
+      <div class="warning-box">
+        <div class="warning-title">PROCESSO DE AUTORIZAÇÃO</div>
+        <p>Todas as autorizações devem ser formalizadas por contrato específico que define os termos de uso, duração, território e finalidade. Não respondemos a solicitações de uso através de mensagens diretas em redes sociais de terceiros ou perfis não oficiais.</p>
+      </div>
+    </section>
+
+    <a href="index.html" class="back-button">
+      <span>← Voltar a tela inicial</span>
+    </a>
+
+    <footer class="footer">
+      <p>© 2024 Addara Flor. Todos os direitos reservados.</p>
+      <p>Este documento tem validade legal e está em conformidade com a legislação brasileira aplicável.</p>
+    </footer>
+    
+  </div>
+  
+  <!-- JavaScript -->
+  <script src="js/javascript.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+<!-- Dev: desen69 | 2025 -->
+</html>

@@ -1,0 +1,604 @@
+/* ===== SEÇÃO DE PODCASTS - VERSÃO CORRIGIDA ===== */
+
+/* Container principal */
+.podcasts-outer-container {
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  background: transparent;
+  margin: 0 auto 4rem; /* Espaço adequado antes do rodapé */
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Seção principal de podcasts - TAMANHO REDUZIDO */
+.podcasts-section {
+  width: 100%;
+  max-width: 1200px; /* Reduzido de 1400px */
+  margin: 1.5rem auto;
+  padding: 2rem 1.5rem; /* Reduzido padding */
+  border: 2px solid #ff00ff;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 12px #ff00ff, inset 0 0 10px rgba(255, 0, 255, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.podcasts-section:hover {
+  box-shadow: 0 0 18px #ff00ff, 0 0 25px rgba(255, 0, 255, 0.3), inset 0 0 12px rgba(255, 0, 255, 0.15);
+}
+
+/* Container dos cards - 2 COLUNAS EM TELAS GRANDES */
+.podcasts-container {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 coluna mobile */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+/* Tablet - 2 colunas */
+@media (min-width: 768px) {
+  .podcasts-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS */
+    gap: 2rem;
+    padding: 1rem;
+  }
+}
+
+/* Desktop - 2 colunas mantidas */
+@media (min-width: 1024px) {
+  .podcasts-container {
+    grid-template-columns: repeat(2, 1fr); /* MANTÉM 2 COLUNAS */
+    max-width: 1000px;
+    gap: 2.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Cards de podcast - TAMANHO AUMENTADO MANTENDO PROPORÇÃO */
+.podcast-card {
+  position: relative;
+  border: 1.5px solid #00ffff;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 6px #00ffff, inset 0 0 6px rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  aspect-ratio: 16/9; /* MANTÉM PROPORÇÃO */
+  width: 100%;
+  margin: 0 auto;
+  justify-self: center;
+}
+
+.podcast-card:hover {
+  box-shadow: 0 0 15px #00ffff, inset 0 0 10px rgba(0, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Thumbnail mantém proporção */
+.podcast-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.podcast-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* MANTÉM PROPORÇÃO DA IMAGEM */
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  padding: 1.25rem;
+  color: #fff;
+}
+
+.overlay h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  text-shadow: 0 0 6px #ff00ff;
+  font-weight: 600;
+}
+
+.overlay span {
+  font-size: 0.95rem;
+  color: #00ffff;
+  font-weight: 500;
+}
+
+/* Botão de play */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  width: 60px;
+  height: 60px;
+}
+
+.podcast-card:hover .play-button {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ===== PODCASTS GRID ALTERNATIVO - CORRIGIDO PARA 2 COLUNAS ===== */
+.podcasts-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 coluna mobile */
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+  align-items: start;
+}
+
+/* Tablet - 2 COLUNAS */
+@media (min-width: 768px) {
+  .podcasts-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 COLUNAS */
+    gap: 2rem;
+  }
+}
+
+/* Desktop - MANTÉM 2 COLUNAS */
+@media (min-width: 1024px) {
+  .podcasts-grid {
+    grid-template-columns: repeat(2, 1fr); /* MANTÉM 2 COLUNAS */
+    gap: 2.5rem;
+  }
+}
+
+.podcast-item {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px solid #ff00ff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(13, 0, 19, 0.4);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.podcast-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(176, 0, 255, 0.3);
+}
+
+/* Thumbnail com altura proporcional */
+.podcast-thumbnail {
+  width: 100%;
+  height: 150px; /* Altura fixa para manter proporção */
+  object-fit: cover; /* Mantém proporção da imagem */
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.podcast-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+}
+
+.podcast-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-size: clamp(15px, 2vw, 16px);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.podcast-duration {
+  color: #ff00ff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+/* Efeitos hover mantidos */
+.podcast-item:hover .podcast-thumbnail {
+  transform: scale(1.05);
+}
+
+.podcast-item:hover .podcast-title {
+  color: #ff00ff;
+  text-shadow: 0 0 10px rgba(176, 0, 255, 0.6);
+}
+
+.podcast-item:hover .podcast-duration {
+  color: #00ffff;
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+/* Animações */
+@keyframes cardScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.podcast-item {
+  animation: cardScaleUp 0.6s ease-out;
+}
+
+.podcast-item:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.podcast-item:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+/* ===== RESPONSIVIDADE CORRIGIDA ===== */
+
+/* Mobile Pequeno */
+@media (max-width: 480px) {
+  .podcasts-outer-container {
+    padding: 0 0.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .podcasts-section {
+    padding: 1rem;
+    margin: 1rem auto;
+    width: calc(100% - 1rem);
+  }
+  
+  .podcasts-container {
+    gap: 1rem;
+    padding: 0.25rem;
+  }
+  
+  .overlay {
+    padding: 1rem;
+  }
+  
+  .overlay h3 {
+    font-size: 1.1rem;
+  }
+  
+  .overlay span {
+    font-size: 0.85rem;
+  }
+  
+  .play-button {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .podcasts-grid {
+    gap: 1rem;
+  }
+  
+  .podcast-item {
+    min-height: 160px;
+  }
+  
+  .podcast-thumbnail {
+    height: 120px;
+  }
+  
+  .podcast-info {
+    padding: 1rem;
+    min-height: 100px;
+  }
+  
+  .podcast-title {
+    font-size: 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .podcasts-section {
+    padding: 1.5rem 1rem;
+    margin: 1rem auto;
+  }
+  
+  .podcasts-container {
+    gap: 1.5rem;
+    padding: 0.5rem;
+  }
+  
+  .podcasts-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Tablet - 2 COLUNAS CONFIRMADAS */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .podcasts-section {
+    padding: 2rem 1.5rem;
+    margin: 2rem auto;
+  }
+  
+  .podcasts-grid {
+    grid-template-columns: repeat(2, 1fr); /* CONFIRMA 2 COLUNAS */
+    gap: 2rem;
+  }
+  
+  .podcast-item {
+    min-height: 200px;
+  }
+  
+  .podcast-thumbnail {
+    height: 140px;
+  }
+  
+  .podcast-info {
+    padding: 1.5rem;
+    min-height: 120px;
+  }
+  
+  .podcast-title {
+    font-size: clamp(15px, 1.8vw, 17px);
+  }
+}
+
+/* Desktop - 2 COLUNAS GRANDES */
+@media (min-width: 1024px) {
+  .podcasts-section {
+    padding: 2.5rem 2rem;
+    margin: 2rem auto;
+    max-width: 1100px;
+  }
+  
+  .podcasts-grid {
+    grid-template-columns: repeat(2, 1fr); /* CONFIRMA 2 COLUNAS */
+    gap: 2.5rem;
+  }
+  
+  .podcast-item {
+    min-height: 220px; /* Cards maiores mas proporcionais */
+  }
+  
+  .podcast-thumbnail {
+    height: 160px; /* Thumbnail maior mas proporcional */
+  }
+  
+  .podcast-info {
+    padding: 1.75rem;
+    min-height: 140px;
+  }
+  
+  .podcast-title {
+    font-size: clamp(16px, 1.6vw, 18px);
+  }
+  
+  .podcast-duration {
+    font-size: 14px;
+  }
+}
+
+/* Desktop Grande - CARDS MAIORES PROPORCIONAIS */
+@media (min-width: 1200px) {
+  .podcasts-section {
+    padding: 3rem 2.5rem;
+    margin: 2.5rem auto;
+    max-width: 1200px;
+  }
+  
+  .podcasts-grid {
+    grid-template-columns: repeat(2, 1fr); /* MANTÉM 2 COLUNAS */
+    gap: 3rem;
+  }
+  
+  .podcast-item {
+    min-height: 240px; /* Altura aumentada proporcionalmente */
+  }
+  
+  .podcast-thumbnail {
+    height: 170px; /* Thumbnail aumentada proporcionalmente */
+  }
+  
+  .podcast-info {
+    padding: 2rem;
+    min-height: 150px;
+  }
+  
+  .podcast-title {
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.5;
+  }
+  
+  .podcast-duration {
+    font-size: 14px;
+  }
+}
+
+/* Garantir que o rodapé fique no final */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.podcasts-outer-container {
+  flex: 1;
+}
+
+/* Estilos para telas maiores (computadores) */
+@media screen and (min-width: 1024px) {
+  /* Layout principal para fixar o rodapé na parte inferior */
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Conteúdo principal ocupa o espaço disponível */
+  .page {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Container principal dos podcasts ocupa o espaço restante */
+  .podcasts-outer-container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Rodapé fixo na parte inferior com altura máxima de 10% */
+  .footer {
+    flex-shrink: 0;
+    max-height: 10vh;
+    margin-top: auto;
+  }
+  
+  /* Container dos podcasts com largura máxima e centralização */
+  .podcasts-container-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Seção de podcasts ocupa todo o espaço disponível */
+  .podcasts-section {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Grid de 2 colunas para os cards de podcasts */
+  .podcasts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+    flex: 1 0 auto;
+    
+    /* Distribuição uniforme do espaço vertical */
+    align-content: space-between;
+  }
+  
+  /* Cards de podcasts com tamanho escalável */
+  .podcast-card {
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Mantém a proporção do card */
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  
+  /* Garantir que os cards da segunda linha fiquem alinhados ao fundo */
+  .podcast-card:nth-child(3),
+  .podcast-card:nth-child(4) {
+    align-self: end;
+  }
+  
+  /* Aumento progressivo dos cards conforme a tela aumenta */
+  @media screen and (min-width: 1024px) {
+    .podcast-card {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .podcast-card {
+      max-width: 550px;
+    }
+  }
+  
+  @media screen and (min-width: 1400px) {
+    .podcast-card {
+      max-width: 600px;
+    }
+  }
+  
+  @media screen and (min-width: 1600px) {
+    .podcast-card {
+      max-width: 650px;
+    }
+  }
+  
+  @media screen and (min-width: 1800px) {
+    .podcast-card {
+      max-width: 700px;
+    }
+  }
+  
+  /* Efeito hover sutil nos cards */
+  .podcast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Ajuste da imagem dentro do card para preencher o espaço */
+  .podcast-thumb {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .podcast-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Ajuste do overlay para acompanhar o tamanho do card */
+  .podcast-thumb .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 1.5rem;
+    color: white;
+  }
+  
+  /* Aumento do botão de play proporcionalmente */
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease;
+  }
+  
+  .podcast-card:hover .play-button {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
