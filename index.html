@@ -61,14 +61,19 @@
 
     
 
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQ0BCP8Y35"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-MQ0BCP8Y35');
+  gtag('config', 'G-MQ0BCP8Y35', {
+    'page_title': 'AddaraFlor - Página Inicial',
+    'page_location': window.location.href,
+    'page_type': 'tela_principal',
+    'categoria_conteudo': 'apresentacao'
+  });
 </script>
   <!-- ========================== -->
   <!-- ✅ CORREÇÃO DEFINITIVA - SEM FOUC -->
