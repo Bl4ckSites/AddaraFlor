@@ -202,12 +202,18 @@
 
 
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQ0BCP8Y35"></script>
 <script>
-  // Configuração específica da página de história
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
   gtag('config', 'G-MQ0BCP8Y35', {
-    'page_title': 'História - AddaraFlor',
+    'page_title': 'Minha História - AddaraFlor',
     'page_location': window.location.href,
-    'page_type': 'tela_historia'
+    'page_type': 'tela_historia',
+    'categoria_conteudo': 'biografia'
   });
 </script>
 
