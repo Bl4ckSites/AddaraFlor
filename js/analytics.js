@@ -192,6 +192,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             console.log('📝 Analytics: Formulário enviado');
         });
+        // No seu código de analytics, adicione:
+gtag('event', 'rolagem_profunda', {
+  'page_type': 'tela_aulas',
+  'engajamento': 'alto'
+});
+
+gtag('event', 'clique_menu', {
+  'page_type': 'tela_principal', 
+  'elemento': 'menu_hamburguer'
+});
+
+gtag('event', 'visualizacao_conteudo', {
+  'page_type': 'tela_podcasts',
+  'tempo_assistido': '120s'
+});
     });
     
     console.log('🚀 Analytics: Configuração completa para', pageName);
