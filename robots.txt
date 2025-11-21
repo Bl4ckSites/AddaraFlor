@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adarraflor.com.br/sitemap.xml
+# Bloquear imagens específicas da pasta imgs (exceto icons e SEO)
+Disallow: /imgs/
+Allow: /imgs/icons/
+Allow: /imgs/social-preview.jpg
+
+# Sitemap
+Sitemap: https://www.adarraflor.com.br/sitemap.xml
