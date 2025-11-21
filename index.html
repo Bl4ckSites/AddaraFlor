@@ -112,7 +112,7 @@
   <!-- ========================== -->
   
   <!-- 🔧 CSS CRÍTICO INLINE - ESTRUTURA BÁSICA -->
-  <style>
+  <style>      
     /* FUNDO SEMPRE VISÍVEL - EVITA BRANCO */
     html, body {
       background-color: #0a0a0a;
@@ -123,6 +123,17 @@
       width: 100%;
       overflow-x: hidden;
     }
+
+      /* No seu CSS principal */
+.icon {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Ou especificamente para SVG */
+.icon svg path {
+    fill: white !important;
+    stroke: white !important;
+}
 
            /* LOADING SCREEN - SEMPRE VISÍVEL INICIALMENTE */
         .loading-screen {
