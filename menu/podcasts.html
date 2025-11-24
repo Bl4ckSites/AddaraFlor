@@ -318,6 +318,25 @@
   <script src="../js/javascript.js"></script>
   <script src="../js/podcasts.js"></script>
   <script src="../js/analytics.js"></script>
+
+ <script  // Salvar timestamp ao sair
+window.addEventListener('beforeunload', function() {
+    localStorage.setItem('lastVisit', new Date().getTime().toString());
+});
+
+// Verificar e recarregar ao voltar
+window.addEventListener('load', function() {
+    const lastVisit = localStorage.getItem('lastVisit');
+    const currentTime = new Date().getTime();
+    
+    if (lastVisit && (currentTime - parseInt(lastVisit)) < 30 * 60 * 1000) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+    }
+    
+    localStorage.setItem('lastVisit', currentTime.toString());
+});</script>
   
 </body>
 <!-- Dev: desen69 | 2025 -->
