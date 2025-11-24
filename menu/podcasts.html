@@ -318,6 +318,37 @@
   <script src="../js/javascript.js"></script>
   <script src="../js/podcasts.js"></script>
   <script src="../js/analytics.js"></script>
+
+  
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const globoplayCard = document.getElementById('globoplay-card');
+    
+    if (globoplayCard) {
+        globoplayCard.addEventListener('click', function(e) {
+            // Salvar no sessionStorage que o card foi clicado
+            sessionStorage.setItem('globoplayRedirected', 'true');
+            
+            // Configurar o reload após 4 segundos
+            setTimeout(function() {
+                if (sessionStorage.getItem('globoplayRedirected') === 'true') {
+                    sessionStorage.removeItem('globoplayRedirected');
+                    window.location.reload();
+                }
+            }, 4000);
+        });
+    }
+    
+    // Verificar se já houve um redirecionamento recente
+    if (sessionStorage.getItem('globoplayRedirected') === 'true') {
+        sessionStorage.removeItem('globoplayRedirected');
+        // Pequeno delay para garantir que tudo carregou
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
+    }
+});
+</script>
   
 </body>
 <!-- Dev: desen69 | 2025 -->
