@@ -1,10 +1,12 @@
 User-agent: *
 Allow: /
 
-# Bloquear imagens específicas da pasta imgs (exceto icons e SEO)
-Disallow: /imgs/
+# Permitir imagens de ícones e a imagem de preview social
 Allow: /imgs/icons/
 Allow: /imgs/social-preview.jpg
+
+# Bloquear o restante da pasta imgs (se houver outras imagens que não quer indexar)
+Disallow: /imgs/
 
 # Sitemap
 Sitemap: https://www.adarraflor.com.br/sitemap.xml
