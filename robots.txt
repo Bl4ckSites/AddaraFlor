@@ -9,4 +9,4 @@ Allow: /imgs/social-preview.jpg
 Disallow: /imgs/
 
 # Sitemap
-Sitemap: https://www.adarraflor.com.br/sitemap.xml
+Sitemap: https://www.addaraflor.com.br/sitemap.xml
