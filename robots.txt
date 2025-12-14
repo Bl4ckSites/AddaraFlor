@@ -6,4 +6,4 @@ Allow: /imgs/icons/
 Allow: /imgs/social-preview.jpg
 
 # Sitemap
-Sitemap: https://www.addaraflor.com.br/sitemap.xml
+Sitemap: https://addaraflor.com.br/sitemap.xml
