@@ -100,21 +100,51 @@
 
 
   <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Addara Flor",
-    "description": "Artista de pole dance e criadora de conteúdo sensual",
-    "url": "https://www.addaraflor.com.br",
-    "image": "https://www.addaraflor.com.br/imgs/avatar.png",
-    "sameAs": [
-      "https://www.tiktok.com/@addaraflor",
-      "https://www.instagram.com/addaraflor"
-    ]
-  }
-  </script>
-    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://addaraflor.com.br/#person",
+      "name": "Addara Flor",
+      "url": "https://addaraflor.com.br",
+      "image": "https://addaraflor.com.br/imgs/avatar.png",
+      "description": "Artista de pole dance, professora e performer. Conteúdo exclusivo e performances artísticas.",
+      "birthDate": "1988-02-01", <!-- VERIFICAR A DATA REAL -->
+      "birthPlace": {
+        "@type": "Place",
+        "name": "Brasil"
+      },
+      "gender": "Female",
+      "nationality": "Brazilian",
+      "jobTitle": "Artista de Pole Dance",
+      "knowsLanguage": ["Portuguese", "English"],
+      "sameAs": [
+        "https://www.instagram.com/addaraflor",
+        "https://www.tiktok.com/@addaraflor",
+        "https://www.youtube.com/@Vulgarstripper",
+        "https://privacy.com.br/checkout/addara"
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Addara Flor",
+        "url": "https://addaraflor.com.br"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://addaraflor.com.br/#website",
+      "url": "https://addaraflor.com.br",
+      "name": "Addara Flor | Pole Dance & Expressão Artística",
+      "description": "Site oficial da artista Addara Flor",
+      "publisher": {
+        "@id": "https://addaraflor.com.br/#person"
+      }
+    }
+  ]
+}
+</script>
   <!-- ========================== -->
   <!-- ✅ CORREÇÃO DEFINITIVA - SEM FOUC -->
   <!-- ========================== -->
