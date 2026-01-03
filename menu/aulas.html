@@ -75,6 +75,126 @@
 <meta name="language" content="Portuguese">
 <link rel="canonical" href="https://addaraflor.com.br/menu/aulas.html">
 
+  <styles>
+
+    /* ESTILOS OTIMIZADOS PARA ÍCONES - VERSÃO RESPONSIVA */
+
+/* Container base para ícones */
+.menu-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+/* Imagens dentro dos ícones */
+.menu-item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: inherit;
+}
+
+/* Efeitos hover para todos os itens com ícones */
+.menu-item:hover .menu-item-icon img,
+.menu-accordion-header:hover .menu-item-icon img {
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+  transform: scale(1.1);
+}
+
+/* Estado ativo (página atual) */
+.menu-item.active .menu-item-icon img {
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+}
+
+/* Ícone especial RGB (emoji) */
+.menu-toggle-item .menu-item-icon {
+  font-size: 18px;
+  width: auto;
+  height: auto;
+  min-width: 24px;
+}
+
+/* Acessibilidade - estados de foco */
+.menu-item:focus .menu-item-icon img,
+.menu-accordion-header:focus .menu-item-icon img {
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+  transform: scale(1.1);
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* RESPONSIVIDADE */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .menu-item-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .menu-toggle-item .menu-item-icon {
+    font-size: 16px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .menu-item-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .menu-toggle-item .menu-item-icon {
+    font-size: 14px;
+  }
+  
+  .menu-item:hover .menu-item-icon img,
+  .menu-accordion-header:hover .menu-item-icon img {
+    transform: scale(1.05);
+  }
+}
+
+/* Telas muito pequenas (orientação retrato) */
+@media (max-width: 360px) {
+  .menu-item-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .menu-item-icon img {
+    object-fit: cover;
+  }
+}
+
+/* Ajustes para modo paisagem em celulares */
+@media (max-height: 500px) and (orientation: landscape) {
+  .menu-item-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Suporte para alta densidade de pixels (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .menu-item-icon img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Animações suaves para transições */
+@supports (transition: all 0.3s ease) {
+  .menu-item-icon {
+    will-change: transform, filter;
+  }
+}
+  </styles>
+
   <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQ0BCP8Y35"></script>
 <script>
