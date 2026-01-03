@@ -37,52 +37,6 @@
   <link rel="manifest" href="../imgs/icons/site.webmanifest">
   
   <style>
-    /* CSS para ícones do menu - Versão Atualizada */
-    .menu-item-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-    }
-
-    .menu-item-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      transition: all 0.3s ease;
-    }
-
-    /* Efeitos hover para itens do menu */
-    .menu-item:hover .menu-item-icon img,
-    .menu-accordion-header:hover .menu-item-icon img {
-      filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
-      transform: scale(1.1);
-    }
-
-    /* Item ativo */
-    .menu-item.active .menu-item-icon img {
-      filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
-    }
-
-    /* Para o ícone de emoji (RGB) no toggle */
-    .menu-toggle-item .menu-item-icon {
-      font-size: 18px;
-      width: auto;
-      height: auto;
-    }
-
-    /* Estados de foco para acessibilidade */
-    .menu-item:focus .menu-item-icon img,
-    .menu-accordion-header:focus .menu-item-icon img {
-      filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
-      transform: scale(1.1);
-      outline: 2px solid rgba(255, 255, 255, 0.5);
-      outline-offset: 2px;
-    }
-
     /* Estilos específicos para a página de contato */
     .contact-hero {
       text-align: center;
@@ -106,31 +60,61 @@
       margin: 0 auto;
     }
 
-    .contact-section {
-      max-width: 600px;
-      margin: 0 auto 4rem;
-      padding: 0 1rem;
+    /* Container principal igual ao podcasts.html */
+    .contact-outer-container {
+      min-height: calc(100vh - 300px);
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px; /* Espaço para o footer */
     }
 
-    .contact-form, .success-card {
+    .contact-section {
+      flex: 1;
+      padding: 2rem 1rem;
+    }
+
+    .contact-container-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* Cards (formulário e sucesso) com mesmo estilo do podcasts.html */
+    .contact-card {
       background: var(--bg-card);
       border: 1.5px solid var(--border-neon);
       border-radius: var(--radius-xl);
       padding: 2.5rem;
       box-shadow: 0 8px 30px rgba(13, 0, 19, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       min-height: 400px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    /* Garantir que formulário e card de sucesso tenham mesmo tamanho */
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(176, 0, 255, 0.4);
+    }
+
+    /* Formulário */
     .contact-form {
       display: block;
+      animation: fadeIn 0.5s ease;
     }
     
     .success-card {
       display: none;
+      text-align: center;
+      border: 1.5px solid #2ecc71;
+      animation: fadeIn 0.5s ease;
     }
     
     .success-card.show {
@@ -146,6 +130,7 @@
       margin-bottom: 0.5rem;
       color: var(--text-primary);
       font-weight: 500;
+      font-family: 'Inter', sans-serif;
     }
 
     .form-input,
@@ -156,15 +141,16 @@
       border: 1.5px solid var(--border-neon);
       border-radius: var(--radius-md);
       color: var(--text-primary);
-      font-family: inherit;
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .form-input:focus,
     .form-textarea:focus {
       outline: none;
       border-color: var(--neon-pink);
+      box-shadow: 0 0 0 3px rgba(176, 0, 255, 0.1);
     }
 
     .form-textarea {
@@ -185,6 +171,7 @@
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       margin-top: 1rem;
+      font-family: 'Inter', sans-serif;
     }
 
     .form-submit:hover:not(:disabled) {
@@ -195,19 +182,22 @@
     .form-submit:disabled {
       opacity: 0.7;
       cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
     }
 
     /* Card de sucesso */
-    .success-card {
-      border: 1.5px solid #2ecc71;
-      text-align: center;
-      animation: fadeIn 0.5s ease;
-    }
-
     .success-icon {
       font-size: 3rem;
       color: #2ecc71;
       margin-bottom: 1rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
 
     .success-title {
@@ -221,6 +211,7 @@
       color: var(--text-primary);
       margin-bottom: 1.5rem;
       line-height: 1.6;
+      font-family: 'Inter', sans-serif;
     }
 
     .success-button {
@@ -233,6 +224,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: transform 0.3s ease;
+      font-family: 'Inter', sans-serif;
     }
 
     .success-button:hover {
@@ -249,16 +241,29 @@
       text-align: center;
       color: #e74c3c;
       display: none;
+      animation: fadeIn 0.5s ease;
+      font-family: 'Inter', sans-serif;
     }
 
     .error-message.show {
       display: block;
-      animation: fadeIn 0.5s ease;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer fixo no final */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-neon);
+      padding: 1rem 0;
     }
 
     /* Responsividade */
@@ -267,15 +272,50 @@
         padding: 3rem 1rem 2rem;
       }
       
-      .contact-form, .success-card {
+      .contact-card {
         padding: 1.5rem;
         min-height: 350px;
+      }
+      
+      .contact-outer-container {
+        min-height: calc(100vh - 250px);
+        padding-bottom: 70px;
+      }
+      
+      .footer {
+        padding: 0.8rem 0;
       }
     }
     
     @media (max-width: 480px) {
-      .contact-form, .success-card {
+      .contact-card {
         min-height: 300px;
+        padding: 1.2rem;
+      }
+      
+      .contact-title {
+        font-size: 2.2rem;
+      }
+      
+      .contact-outer-container {
+        padding-bottom: 60px;
+      }
+    }
+
+    /* Ajustes para garantir que o conteúdo não fique atrás do footer */
+    body {
+      padding-bottom: 80px;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 70px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        padding-bottom: 60px;
       }
     }
   </style>
@@ -383,55 +423,63 @@
       </div>
     </section>
 
-    <!-- Seção do Formulário de Contato -->
-    <section class="contact-section" aria-labelledby="contact-form-title">
-      <div class="contact-container">
-        <!-- Card de Sucesso (mesmo tamanho do formulário) -->
-        <div id="successCard" class="success-card">
-          <div class="success-content">
-            <div class="success-icon">✓</div>
-            <h2 class="success-title">Mensagem Enviada com Sucesso!</h2>
-            <p class="success-message">Obrigada pelo seu contato! Addara Flor responderá em breve.</p>
-            <button id="newMessageButton" class="success-button">Enviar Nova Mensagem</button>
+    <!-- Container principal igual ao podcasts.html -->
+    <div class="contact-outer-container">
+      <section class="contact-section" aria-labelledby="contact-form-title">
+        <div class="contact-container-wrapper">
+          <div class="contact-container">
+            <!-- Card de Formulário -->
+            <div class="contact-card">
+              <!-- Mensagem de Erro -->
+              <div id="errorMessage" class="error-message">
+                <p>❌ Ocorreu um erro ao enviar sua mensagem. Tente novamente ou entre em contato diretamente por e-mail.</p>
+              </div>
+              
+              <!-- Formulário de Contato -->
+              <form id="contactForm" class="contact-form">
+                <!-- Campos ocultos para configuração do FormSubmit -->
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="Nova mensagem do site Addara Flor">
+                
+                <div class="form-group">
+                  <label for="name" class="form-label">Nome</label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="seu.email@exemplo.com" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="message" class="form-label">Mensagem</label>
+                  <textarea id="message" name="message" class="form-textarea" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit" id="submitButton">
+                  <span id="submitText">Enviar Mensagem</span>
+                  <span id="submitLoading" style="display: none;">Enviando...</span>
+                </button>
+              </form>
+              
+              <!-- Card de Sucesso -->
+              <div id="successCard" class="success-card">
+                <div class="success-content">
+                  <div class="success-icon">✓</div>
+                  <h2 class="success-title">Mensagem Enviada!</h2>
+                  <p class="success-message">Obrigada pelo seu contato! Addara Flor responderá em breve.</p>
+                  <button id="newMessageButton" class="success-button">Enviar Nova Mensagem</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <!-- Mensagem de Erro -->
-        <div id="errorMessage" class="error-message">
-          <p>❌ Ocorreu um erro ao enviar sua mensagem. Tente novamente ou entre em contato diretamente por e-mail.</p>
-        </div>
-        
-        <!-- Formulário de Contato (apenas AJAX) -->
-        <form id="contactForm" class="contact-form">
-          <!-- Campos ocultos para configuração do FormSubmit -->
-          <input type="text" name="_honey" style="display:none">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_subject" value="Nova mensagem do site Addara Flor">
-          
-          <div class="form-group">
-            <label for="name" class="form-label">Nome</label>
-            <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="seu.email@exemplo.com" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="message" class="form-label">Mensagem</label>
-            <textarea id="message" name="message" class="form-textarea" placeholder="Escreva sua mensagem aqui..." required></textarea>
-          </div>
-          
-          <button type="submit" class="form-submit" id="submitButton">
-            <span id="submitText">Enviar Mensagem</span>
-            <span id="submitLoading" style="display: none;">Enviando...</span>
-          </button>
-        </form>
-      </div>
-    </section>
+      </section>
+    </div>
 
+    <!-- Rodapé fixo -->
     <footer class="footer" role="contentinfo">
       <div class="socials">
         <a class="circle" href="../licencas.html" aria-label="Licenças de uso">Licenças</a>
@@ -460,6 +508,7 @@
     const submitText = document.getElementById('submitText');
     const submitLoading = document.getElementById('submitLoading');
     const newMessageButton = document.getElementById('newMessageButton');
+    const contactCard = document.querySelector('.contact-card');
     
     // Configurações
     const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/addaraflor@gmail.com';
@@ -470,7 +519,11 @@
       
       errorMessage.querySelector('p').textContent = message;
       errorMessage.classList.add('show');
-      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Rolar suavemente para a mensagem de erro
+      setTimeout(() => {
+        errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     }
     
     // Função para mostrar sucesso
@@ -481,7 +534,12 @@
       
       contactForm.style.display = 'none';
       successCard.classList.add('show');
-      successCard.scrollIntoView({ behavior: 'smooth' });
+      errorMessage.classList.remove('show');
+      
+      // Rolar suavemente para o card de sucesso
+      setTimeout(() => {
+        successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     }
     
     // Função para redefinir botão de envio
@@ -613,7 +671,10 @@
       console.log('✅ Formulário redefinido com sucesso');
       console.log('📋 Estado atual: Pronto para novo envio');
       
-      contactForm.scrollIntoView({ behavior: 'smooth' });
+      // Rolar suavemente para o formulário
+      setTimeout(() => {
+        contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     }
     
     // Event Listeners
