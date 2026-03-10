@@ -3,28 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Workshop Sensual em Grupo | Addara Flor</title>
   <meta name="description" content="Workshop sensual para grupos: autoestima, técnicas de sedução e diversão sem pressão. Ideal para despedidas, chá de lingerie e encontros especiais.">
   <meta name="keywords" content="workshop sensual, despedida de solteira, chá de lingerie, autoestima feminina, técnicas de sedução">
   <meta name="author" content="Addara Flor">
-  <!-- Evitar aparecer imagens e icons na aba -->
-    <meta name="google" content="nositelinkssearchbox">
-    <meta name="robots" content="noimageindex">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Addara Flor">
-  <meta property="og:title" content="Addara Flor | Minha História">
-  <meta property="og:description" content="Conheça a trajetória de Addara Flor no universo do pole dance e artes circenses">
-  <meta property="og:url" content="https://addaraflor.com.br/menu/Historia.html">
-  <meta property="og:image" content="https://addaraflor.com.br/imgs/social-preview.jpg">
+  <meta property="og:title" content="Workshop Sensual em Grupo | Addara Flor">
+  <meta property="og:description" content="Uma experiência divertida, leve e inesquecível para grupos de amigas.">
+  <meta property="og:url" content="https://www.addaraflor.com/menu/aulas.html">
+  <meta property="og:image" content="https://www.addaraflor.com/imgs/social-preview.jpg">
   
   <!-- Preload Resources -->
   <link rel="preload" href="../css/styles.css" as="style">
   <link rel="preload" href="../css/styles2.css" as="style">
-  <link rel="preload" href="../css/historia.css" as="style">
+  <link rel="preload" href="../css/workshop.css" as="style">
   <link rel="preload" href="../js/javascript.js" as="script">
   
   <!-- Fontes Elegantes -->
@@ -33,7 +29,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/styles2.css">
-  <link rel="stylesheet" href="../css/historia.css">
+  <link rel="stylesheet" href="../css/workshop.css">
   
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="../imgs/icons/apple-touch-icon.png">
@@ -41,123 +37,294 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../imgs/icons/favicon-16x16.png">
   <link rel="shortcut icon" type="image/x-icon" href="../imgs/icons/favicon.ico">
   <link rel="manifest" href="../imgs/icons/site.webmanifest">
-  <link rel="icon" type="image/png" sizes="192x192" href="../imgs/icons/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="../imgs/icons/android-chrome-512x512.png">
+  
+  <style>
+    /* CSS para ícones do menu - Versão Atualizada */
+    .menu-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
 
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="Workshop Sensual em Grupo | Addara Flor">
-  <meta property="og:description" content="Uma experiência divertida, leve e inesquecível para grupos de amigas.">
-  <meta property="og:image" content="https://addaraflor.com.br/imgs/social-preview.jpg">
+    .menu-item-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      transition: all 0.3s ease;
+    }
 
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/styles2.css">
-  <link rel="stylesheet" href="../css/workshop.css">
+    .menu-item:hover .menu-item-icon img,
+    .menu-accordion-header:hover .menu-item-icon img {
+      filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+      transform: scale(1.1);
+    }
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    .menu-item.active .menu-item-icon img {
+      filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+    }
 
-  <meta name="theme-color" content="#a900ff">
+    .menu-toggle-item .menu-item-icon {
+      font-size: 18px;
+      width: auto;
+      height: auto;
+    }
+
+    .menu-item:focus .menu-item-icon img,
+    .menu-accordion-header:focus .menu-item-icon img {
+      filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+      transform: scale(1.1);
+      outline: 2px solid rgba(255, 255, 255, 0.5);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .menu-item-icon {
+        width: 22px;
+        height: 22px;
+      }
+      .menu-toggle-item .menu-item-icon {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .menu-item-icon {
+        width: 20px;
+        height: 20px;
+      }
+      .menu-toggle-item .menu-item-icon {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .menu-item-icon {
+        width: 18px;
+        height: 18px;
+      }
+      .menu-toggle-item .menu-item-icon {
+        font-size: 14px;
+      }
+    }
+
+    @media (min-width: 1200px) and (-webkit-min-device-pixel-ratio: 2),
+           (min-width: 1200px) and (min-resolution: 192dpi) {
+      .menu-item-icon img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+    }
+
+    @media (min-width: 1600px) {
+      .menu-item-icon {
+        width: 28px;
+        height: 28px;
+      }
+      .menu-toggle-item .menu-item-icon {
+        font-size: 20px;
+      }
+    }
+
+    .menu-item-icon img {
+      image-rendering: auto;
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+
+    .menu-item-icon,
+    .menu-item-icon img {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-item-icon img {
+      background: transparent;
+    }
+
+    .menu-accordion-header .menu-item-icon img {
+      transition: transform 0.3s ease;
+    }
+
+    .menu-accordion-header[aria-expanded="true"] .menu-item-icon img {
+      transform: rotate(180deg);
+    }
+
+    .menu-toggle-item .menu-item-icon {
+      margin-right: 8px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .menu-item-icon,
+      .menu-item-icon img,
+      .menu-accordion-header .menu-item-icon img {
+        transition: none;
+        transform: none;
+      }
+    }
+  </style>
+
+  <script>
+    // Configuração específica da página de workshop
+    gtag('config', 'G-MQ0BCP8Y35', {
+      'page_title': 'Workshop - AddaraFlor',
+      'page_location': window.location.href,
+      'page_type': 'tela_workshop'
+    });
+  </script>
 </head>
-
 <body>
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-spinner"></div>
+  </div>
 
-<main class="page">
+  <!-- Botão do Menu Hamburguer -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sideMenu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-  <!-- HERO -->
-  <section class="workshop-hero">
-    <div class="workshop-hero-content">
-      <h1 class="workshop-title">Workshops Sensual em Grupo</h1>
-      <p class="workshop-subtitle">
-        Autoestima, diversão e técnicas sensuais em uma experiência leve e inesquecível.
-      </p>
+  <!-- Overlay do Menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Menu Lateral -->
+  <aside class="side-menu" id="sideMenu" aria-label="Menu lateral" aria-hidden="true">
+    <!-- Thumbnail do Menu -->
+    <div class="menu-thumbnail-container">
+      <img src="../imgs/thumbnail.png" alt="Thumbnail Addara Flor" class="menu-thumbnail">
     </div>
-  </section>
 
-  <!-- CONTEÚDO -->
-  <section class="workshop-container">
-    <div class="workshop-content">
+    <!-- Linha Divisória -->
+    <div class="menu-divider"></div>
 
-      <!-- CARROSSEL -->
-      <div class="carousel-container">
+    <!-- Botões de Navegação -->
+   <nav class="menu-nav" aria-label="Navegação do menu">
+  <a href="../index.html" class="menu-item">
+    <span class="menu-item-icon"><img src="../imgs/icons1/home-icon.png" alt="" aria-hidden="true"></span>
+    <span class="menu-item-text">Início</span>
+    <span class="menu-item-arrow">→</span>
+  </a>
+  
+  <a href="aulas.html" class="menu-item active">
+    <span class="menu-item-icon"><img src="../imgs/icons1/workshop-icon.png" alt="" aria-hidden="true"></span>
+    <span class="menu-item-text">Aulas/workshops</span>  <!-- ALTERADO -->
+    <span class="menu-item-arrow">→</span>
+  </a>
+  
+  <a href="podcasts.html" class="menu-item">
+    <span class="menu-item-icon"><img src="../imgs/icons1/podcasts-icon.png" alt="" aria-hidden="true"></span>
+    <span class="menu-item-text">Na mídia</span>  <!-- ALTERADO -->
+    <span class="menu-item-arrow">→</span>
+  </a>
+  
+  <a href="Historia.html" class="menu-item">
+    <span class="menu-item-icon"><img src="../imgs/icons1/history-icon.png" alt="" aria-hidden="true"></span>
+    <span class="menu-item-text">A estrada até aqui</span>  <!-- ALTERADO -->
+    <span class="menu-item-arrow">→</span>
+  </a>
+</nav>
 
-        <div class="carousel-track">
+    <!-- Linha Divisória -->
+    <div class="menu-divider"></div>
 
-          <div class="carousel-slide">
-            <img src="../imgs/workshop1.jpg" alt="Grupo de mulheres participando de workshop sensual">
+    <!-- Botão Efeitos com Submenu -->
+    <div class="menu-accordion">
+      <button class="menu-accordion-header" id="effectsToggle" aria-expanded="false">
+        <span class="menu-item-icon"><img src="../imgs/icons1/effects-icon.png" alt="" aria-hidden="true"></span>
+        <span class="menu-item-text">Efeitos</span>
+        <span class="menu-accordion-arrow">▼</span>
+      </button>
+      
+      <div class="menu-accordion-content" id="effectsContent">
+        <!-- Toggle RGB -->
+        <div class="menu-toggle-item">
+          <span class="toggle-label">
+            <span class="menu-item-icon">🌈</span>
+            <span class="menu-item-text">RGB</span>
+          </span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="rgbToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="page" id="mainContent" aria-hidden="true" style="display: none;">
+    <!-- HERO -->
+    <section class="workshop-hero">
+      <div class="workshop-hero-content">
+        <h1 class="workshop-title">Workshops Sensual em Grupo</h1>
+        <p class="workshop-subtitle">
+          Autoestima, diversão e técnicas sensuais em uma experiência leve e inesquecível.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="workshop-container">
+      <div class="workshop-content">
+        <!-- CARROSSEL -->
+        <div class="carousel-container">
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <img src="../imgs/workshop1.jpg" alt="Grupo de mulheres participando de workshop sensual">
+            </div>
+            <div class="carousel-slide">
+              <img src="../imgs/workshop2.jpg" alt="Dinâmica coreográfica em workshop feminino">
+            </div>
+            <div class="carousel-slide">
+              <img src="../imgs/workshop3.jpg" alt="Ambiente intimista de despedida de solteira">
+            </div>
+            <div class="carousel-slide">
+              <img src="../imgs/workshop4.jpg" alt="Workshop divertido entre amigas">
+            </div>
           </div>
-
-          <div class="carousel-slide">
-            <img src="../imgs/workshop2.jpg" alt="Dinâmica coreográfica em workshop feminino">
-          </div>
-
-          <div class="carousel-slide">
-            <img src="../imgs/workshop3.jpg" alt="Ambiente intimista de despedida de solteira">
-          </div>
-
-          <div class="carousel-slide">
-            <img src="../imgs/workshop4.jpg" alt="Workshop divertido entre amigas">
-          </div>
-
+          <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
+          <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
+          <div class="carousel-dots"></div>
         </div>
 
-        <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
-        <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
+        <!-- TEXTO -->
+        <div class="workshop-text">
+          <p>O workshop é ideal para grupos que querem dar risada e aprender algo novo sem pressão.</p>
+          <p>Que tal reunir suas melhores amigas para uma tarde (ou noite) regada a risadas, brindes e segredinhos irresistíveis?</p>
+          <p>O workshop sensual é focado em elevar a autoestima e ensinar técnicas sensuais de um jeito leve e super divertido.</p>
+          <h3>O que está incluso:</h3>
+          <ul>
+            <li>Dinâmicas de desinibição com montagem coreográfica</li>
+            <li>Técnicas práticas para surpreender no online ou presencial</li>
+            <li>Dicas de sedução aplicáveis na vida real</li>
+          </ul>
+          <p class="highlight">Vamos transformar esse chá de lingerie, despedida de solteira ou encontro com as amigas em uma experiência inesquecível? 💖</p>
+          <p class="private">Também disponível para aulas particulares.</p>
+        </div>
 
-        <div class="carousel-dots"></div>
+        <!-- CTA -->
+        <div class="workshop-cta">
+          <a href="mailto:contato@addaraflor.com.br" class="workshop-button">Solicitar orçamento →</a>
+          <p class="workshop-note">Envie um e-mail e receba todas as informações.</p>
+        </div>
       </div>
+    </section>
 
-      <!-- TEXTO -->
-      <div class="workshop-text">
-
-        <p>
-          O workshop é ideal para grupos que querem dar risada e aprender algo novo sem pressão.
-        </p>
-
-        <p>
-          Que tal reunir suas melhores amigas para uma tarde (ou noite) regada a risadas, brindes e segredinhos irresistíveis?
-        </p>
-
-        <p>
-          O workshop sensual é focado em elevar a autoestima e ensinar técnicas sensuais de um jeito leve e super divertido.
-        </p>
-
-        <h3>O que está incluso:</h3>
-
-        <ul>
-          <li>Dinâmicas de desinibição com montagem coreográfica</li>
-          <li>Técnicas práticas para surpreender no online ou presencial</li>
-          <li>Dicas de sedução aplicáveis na vida real</li>
-        </ul>
-
-        <p class="highlight">
-          Vamos transformar esse chá de lingerie, despedida de solteira ou encontro com as amigas em uma experiência inesquecível? 💖
-        </p>
-
-        <p class="private">
-          Também disponível para aulas particulares.
-        </p>
-
+    <footer class="footer" role="contentinfo">
+      <div class="socials">
+        <a class="circle" href="../licencas.html" aria-label="Licenças de uso">Licenças</a>
+        <a class="circle" href="../licencas.html" aria-label="Direitos autorais">©Addara Flor</a>
+        <a class="circle" href="../licencas.html" aria-label="Termos de uso">Termos Gerais</a>
       </div>
+    </footer>
+  </main>
 
-      <!-- CTA -->
-      <div class="workshop-cta">
-        <a href="mailto:contato@addaraflor.com.br" class="workshop-button">
-          Solicitar orçamento →
-        </a>
-        <p class="workshop-note">
-          Envie um e-mail e receba todas as informações.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-</main>
-
-<!-- JavaScript -->
+  <!-- JavaScript -->
   <script src="../js/javascript.js"></script>
   <script src="../js/analytics.js"></script>
   <script src="../js/workshop-carousel.js"></script>
-
 </body>
+<!-- Dev: desen69 | 2025 -->
 </html>
