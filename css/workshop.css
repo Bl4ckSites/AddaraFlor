@@ -463,3 +463,177 @@
 .menu-icon, .menu-icon img {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* HERO */
+
+.workshop-hero {
+  text-align: center;
+  padding: 100px 20px 60px;
+  background: linear-gradient(180deg, #1a001f, #0c0012);
+}
+
+.workshop-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #e6c4ff;
+}
+
+.workshop-subtitle {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+/* CONTAINER */
+
+.workshop-container {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.workshop-content {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* CARROSSEL */
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 40px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.8s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  opacity: 0.9;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  font-size: 28px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: #a900ff;
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.carousel-dots span {
+  width: 12px;
+  height: 12px;
+  background: #777;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-dots .active {
+  background: #a900ff;
+}
+
+/* TEXTO */
+
+.workshop-text {
+  line-height: 1.8;
+  color: #ddd;
+}
+
+.workshop-text h3 {
+  margin-top: 30px;
+  color: #e6c4ff;
+}
+
+.workshop-text ul {
+  padding-left: 20px;
+  margin: 15px 0;
+}
+
+.highlight {
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.private {
+  margin-top: 10px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* CTA */
+
+.workshop-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.workshop-button {
+  background: linear-gradient(90deg, #a900ff, #ff00c8);
+  padding: 15px 40px;
+  border-radius: 40px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.workshop-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #a900ff;
+}
+
+.workshop-note {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+  .carousel-slide img {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide img {
+    height: 250px;
+  }
+
+  .workshop-title {
+    font-size: 2rem;
+  }
+}
