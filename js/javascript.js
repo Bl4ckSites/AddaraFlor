@@ -1176,3 +1176,303 @@ document.head.appendChild(styleSheet);
 
 
 
+
+
+
+(function() {
+  // ============================================================
+  // CONDIÇÕES DE ATIVAÇÃO
+  // ============================================================
+  const isTouchDevice = ('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+
+  function isLargeScreen() {
+    return window.innerWidth >= 1024;
+  }
+
+  if (isTouchDevice || !isLargeScreen()) {
+    console.log('🖐️ Cursor customizado desabilitado (touch ou tela pequena).');
+    return;
+  }
+
+  // ============================================================
+  // CONFIGURAÇÃO
+  // ============================================================
+  const CONFIG = {
+    lerpFactor: 0.16,       // suavidade do cursor
+    auraLerpFactor: 0.06,   // aura mais atrasada
+    rotationLerp: 0.1,      // suavidade da rotação
+    maxRotation: 12,        // graus máximos de inclinação
+    particleCount: 3,
+    particleBaseDelay: 0.05,
+    particleDelayIncrement: 0.03,
+    svgWidth: 38,
+    svgHeight: 42,
+  };
+
+  // ============================================================
+  // ESTADO
+  // ============================================================
+  const state = {
+    mouseX: -100,
+    mouseY: -100,
+    cursorX: -100,
+    cursorY: -100,
+    auraX: -100,
+    auraY: -100,
+    lastMouseX: -100,
+    lastMouseY: -100,
+    velocityX: 0,
+    velocityY: 0,
+    currentRotation: 0,
+    targetRotation: 0,
+    isHovering: false,
+    isClicking: false,
+    isVisible: false,
+    particles: [],
+  };
+
+  // ============================================================
+  // CRIAÇÃO DOS ELEMENTOS
+  // ============================================================
+  function createElements() {
+    const cursorEl = document.createElement('div');
+    cursorEl.className = 'cyber-cursor';
+    cursorEl.innerHTML = `
+      <svg class="cyber-cursor__svg" viewBox="-3 -3 42 44" width="${CONFIG.svgWidth}" height="${CONFIG.svgHeight}">
+        <defs>
+          <linearGradient id="cursorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff99e6"/>
+            <stop offset="25%" stop-color="#ff55cc"/>
+            <stop offset="55%" stop-color="#ff00c8"/>
+            <stop offset="100%" stop-color="#cc0088"/>
+          </linearGradient>
+          <linearGradient id="cursorGradInner" x1="0%" y1="0%" x2="60%" y2="100%">
+            <stop offset="0%" stop-color="#ffbbee"/>
+            <stop offset="100%" stop-color="#ff33aa"/>
+          </linearGradient>
+          <filter id="innerGlow">
+            <feGaussianBlur stdDeviation="1.5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <path d="M0,0 C3,-1 8,2 18,7 C26,11 31,17 29,24 C27,30 21,35 15,37 C9,38 4,34 2,27 C0,20 -1,10 0,0 Z"
+              fill="url(#cursorGrad)" stroke="#ff33cc" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M7,9 C12,7 18,10 22,15 C19,16.5 14,16.5 10,14 C7,12 6,10 7,9 Z"
+              fill="#0d0010" opacity="0.55"/>
+        <path d="M3,4 C8,3 16,7 22,12" fill="none" stroke="#ffaaee" stroke-width="0.7" opacity="0.5" filter="url(#innerGlow)"/>
+        <path d="M14,33 C16,34.5 19,34 21,32" fill="none" stroke="#ff66cc" stroke-width="0.6" opacity="0.35"/>
+      </svg>
+    `;
+    document.body.appendChild(cursorEl);
+
+    const auraEl = document.createElement('div');
+    auraEl.className = 'cyber-cursor__aura';
+    document.body.appendChild(auraEl);
+
+    const particles = [];
+    for (let i = 0; i < CONFIG.particleCount; i++) {
+      const particleEl = document.createElement('div');
+      particleEl.className = 'cyber-cursor__particle';
+      const size = 2.5 + Math.random() * 3.5;
+      particleEl.style.width = size + 'px';
+      particleEl.style.height = size + 'px';
+      const hue = 315 + Math.random() * 20;
+      const sat = 80 + Math.random() * 20;
+      const light = 45 + Math.random() * 20;
+      particleEl.style.background = `radial-gradient(circle, hsla(${hue}, ${sat}%, ${light}%, 0.9) 0%, hsla(${hue}, ${sat}%, ${light}%, 0.4) 40%, transparent 100%)`;
+      particleEl.style.animationDelay = (Math.random() * 0.8) + 's';
+      particleEl.style.animationDuration = (1.2 + Math.random() * 1.6) + 's';
+      document.body.appendChild(particleEl);
+      particles.push({
+        x: -100, y: -100, el: particleEl,
+        delay: CONFIG.particleBaseDelay + i * CONFIG.particleDelayIncrement,
+      });
+    }
+
+    return { cursorEl, auraEl, particles };
+  }
+
+  const { cursorEl, auraEl, particles } = createElements();
+  state.particles = particles;
+
+  // ============================================================
+  // UTILITÁRIOS
+  // ============================================================
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function isInteractive(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    const tags = ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA', 'LABEL', 'VIDEO', 'AUDIO'];
+    if (tags.includes(el.tagName)) return true;
+    if (el.closest('[role="button"]') || el.closest('[data-cursor-hover]') || el.closest('.btn') || el.closest('.card')) return true;
+    try { if (getComputedStyle(el).cursor === 'pointer') return true; } catch(e) {}
+    if (el.classList && (el.classList.contains('btn') || el.classList.contains('card') || el.classList.contains('interactive'))) return true;
+    return false;
+  }
+
+  function findInteractiveParent(el) {
+    let cur = el;
+    while (cur && cur !== document.body && cur !== document.documentElement) {
+      if (isInteractive(cur)) return cur;
+      cur = cur.parentElement;
+    }
+    return null;
+  }
+
+  // ============================================================
+  // EVENTOS
+  // ============================================================
+  function onMouseMove(e) {
+    state.mouseX = e.clientX;
+    state.mouseY = e.clientY;
+
+    if (!state.isVisible) {
+      state.cursorX = state.mouseX;
+      state.cursorY = state.mouseY;
+      state.auraX = state.mouseX;
+      state.auraY = state.mouseY;
+      state.particles.forEach(p => { p.x = state.mouseX; p.y = state.mouseY; });
+      state.isVisible = true;
+      cursorEl.classList.remove('cyber-cursor--hidden');
+      auraEl.classList.remove('cyber-cursor--hidden');
+    }
+
+    const target = document.elementFromPoint(e.clientX, e.clientY);
+    const interactive = findInteractiveParent(target);
+    const shouldHover = !!interactive;
+    if (shouldHover !== state.isHovering) {
+      state.isHovering = shouldHover;
+      cursorEl.classList.toggle('cyber-cursor--hover', shouldHover);
+      auraEl.classList.toggle('cyber-cursor--hover', shouldHover);
+    }
+  }
+
+  function onMouseDown(e) {
+    if (!state.isClicking) {
+      state.isClicking = true;
+      cursorEl.classList.add('cyber-cursor--clicking');
+      createRipple(e.clientX, e.clientY);
+    }
+  }
+
+  function onMouseUp() {
+    if (state.isClicking) {
+      state.isClicking = false;
+      cursorEl.classList.remove('cyber-cursor--clicking');
+    }
+  }
+
+  function onMouseLeave() {
+    state.isVisible = false;
+    cursorEl.classList.add('cyber-cursor--hidden');
+    auraEl.classList.add('cyber-cursor--hidden');
+    state.particles.forEach(p => { p.el.style.opacity = '0'; });
+  }
+
+  function onMouseEnter(e) {
+    state.mouseX = e.clientX;
+    state.mouseY = e.clientY;
+    state.cursorX = state.mouseX;
+    state.cursorY = state.mouseY;
+    state.auraX = state.mouseX;
+    state.auraY = state.mouseY;
+    state.particles.forEach(p => { p.x = state.mouseX; p.y = state.mouseY; p.el.style.opacity = ''; });
+    state.isVisible = true;
+    cursorEl.classList.remove('cyber-cursor--hidden');
+    auraEl.classList.remove('cyber-cursor--hidden');
+    state.isHovering = false;
+    state.isClicking = false;
+    cursorEl.classList.remove('cyber-cursor--hover', 'cyber-cursor--clicking');
+    auraEl.classList.remove('cyber-cursor--hover');
+  }
+
+  function createRipple(x, y) {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    document.body.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+    setTimeout(() => { if (ripple.parentNode) ripple.remove(); }, 700);
+  }
+
+  // ============================================================
+  // LOOP DE ANIMAÇÃO
+  // ============================================================
+  function update() {
+    if (state.isVisible) {
+      // Velocidade e rotação dinâmica
+      const dx = state.mouseX - state.lastMouseX;
+      const dy = state.mouseY - state.lastMouseY;
+      state.velocityX = lerp(state.velocityX, dx, 0.3);
+      state.velocityY = lerp(state.velocityY, dy, 0.3);
+      state.targetRotation = Math.max(-CONFIG.maxRotation, Math.min(CONFIG.maxRotation, state.velocityX * 0.8));
+      state.currentRotation = lerp(state.currentRotation, state.targetRotation, CONFIG.rotationLerp);
+      state.lastMouseX = state.mouseX;
+      state.lastMouseY = state.mouseY;
+
+      // Interpolação de posição
+      state.cursorX = lerp(state.cursorX, state.mouseX, CONFIG.lerpFactor);
+      state.cursorY = lerp(state.cursorY, state.mouseY, CONFIG.lerpFactor);
+      state.auraX = lerp(state.auraX, state.mouseX, CONFIG.auraLerpFactor);
+      state.auraY = lerp(state.auraY, state.mouseY, CONFIG.auraLerpFactor);
+
+      // Aplica posição e rotação
+      cursorEl.style.transform = `translate3d(${state.cursorX}px, ${state.cursorY}px, 0) rotate(${state.currentRotation}deg)`;
+      auraEl.style.transform = `translate3d(${state.auraX + 12}px, ${state.auraY + 14}px, 0)`;
+
+      // Partículas com opacidade baseada na velocidade
+      const speed = Math.sqrt(state.velocityX ** 2 + state.velocityY ** 2);
+      const particleOpacity = Math.min(1, Math.max(0.1, speed * 0.08));
+      state.particles.forEach(p => {
+        p.x = lerp(p.x, state.mouseX, p.delay);
+        p.y = lerp(p.y, state.mouseY, p.delay);
+        p.el.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
+        p.el.style.opacity = particleOpacity;
+      });
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // ============================================================
+  // LISTENERS
+  // ============================================================
+  document.addEventListener('mousemove', onMouseMove, { passive: true });
+  document.addEventListener('mousedown', onMouseDown, { passive: true });
+  document.addEventListener('mouseup', onMouseUp, { passive: true });
+  document.addEventListener('mouseleave', onMouseLeave);
+  document.addEventListener('mouseenter', onMouseEnter);
+  window.addEventListener('blur', () => {
+    if (state.isClicking) {
+      state.isClicking = false;
+      cursorEl.classList.remove('cyber-cursor--clicking');
+    }
+  });
+
+  // Redimensionamento: desabilita se a tela ficar pequena
+  window.addEventListener('resize', () => {
+    if (!isLargeScreen()) {
+      state.isVisible = false;
+      cursorEl.classList.add('cyber-cursor--hidden');
+      auraEl.classList.add('cyber-cursor--hidden');
+      state.particles.forEach(p => { p.el.style.opacity = '0'; });
+    } else if (!state.isVisible && state.mouseX > 0) {
+      // Se voltar a ser grande e o mouse está sobre a página, reexibe
+      state.isVisible = true;
+      cursorEl.classList.remove('cyber-cursor--hidden');
+      auraEl.classList.remove('cyber-cursor--hidden');
+      state.particles.forEach(p => { p.el.style.opacity = ''; });
+    }
+  });
+
+  // Inicialização
+  requestAnimationFrame(update);
+  console.log('✨ Cursor Neon Natural ativado.');
+})();
+
